@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+<head>
+<title>Cadastro de Estilos</title>
+</head>
+<body>
+	<section class="aw-layout-content  js-content"
+		layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>Cadastro de estilos</h1>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+		
+			<th:block th:include="fragments/MensagemSucesso"></th:block>
+			
+			<form method="POST" th:object="${estilo}" class="form-vertical js-form-loading">
+
+				<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+				
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+							<label for="nome" class="control-label">Nome</label> 
+							<input type="text" id="nome" class="form-control" th:field="*{nome}" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="clearfix">
+					<div class="pull-right">
+						<button type="submit" class="btn btn-primary">Salvar</button>					
+					</div>
+				</div>
+
+			</form>
+		</div>
+
+	</section>
+</body>
+</html>
