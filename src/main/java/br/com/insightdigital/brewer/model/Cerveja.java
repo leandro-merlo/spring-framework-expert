@@ -24,6 +24,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import br.com.insightdigital.brewer.validation.SKU;
 
@@ -81,6 +82,12 @@ public class Cerveja implements Serializable {
 	@NotNull(message="O sabor é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
+	
+	private String foto;
+	
+	@Column(name="content_type")
+	private String contentType;
+	
 
 	@NotNull(message="O estilo é obrigatória")
 	@ManyToOne
@@ -181,6 +188,27 @@ public class Cerveja implements Serializable {
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
 	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public String getFotoOrMock() {
+		return !StringUtils.isEmpty(foto) ? foto : "beer-mock.png";
+	}
+	
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 
 	@Override
 	public int hashCode() {
