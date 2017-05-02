@@ -7,7 +7,7 @@
 		driverClass="com.mysql.cj.jdbc.Driver"
 		jdbcUrl="jdbc:mysql://localhost/brewer?useSSL=false&amp;serverTimezone=UTC"
 		user="root"
-		password="1010"
+		password=""
 		initialPoolSize="5"
 		minPoolSize="5"
 		maxPoolSize="5"

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -16,6 +16,7 @@ import br.com.insightdigital.brewer.model.Origem;
 import br.com.insightdigital.brewer.model.Sabor;
 import br.com.insightdigital.brewer.repository.Cervejas;
 import br.com.insightdigital.brewer.repository.Estilos;
+import br.com.insightdigital.brewer.repository.filter.CervejaFilter;
 import br.com.insightdigital.brewer.services.CadastroCervejaService;
 
 @Controller
@@ -32,7 +33,7 @@ public class CervejasController {
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
 	
-	@RequestMapping("/novo")
+	@GetMapping("/novo")
 	public ModelAndView novo(Cerveja cerveja){	
 		ModelAndView model = new ModelAndView("cerveja/CadastroCerveja");
 		model.addObject("sabores", Sabor.values());
@@ -41,7 +42,7 @@ public class CervejasController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/novo", method = { RequestMethod.POST })	
+	@PostMapping(value = "/novo")	
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, RedirectAttributes attributes){
 		
 		if (result.hasErrors()){
@@ -54,12 +55,12 @@ public class CervejasController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(){
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult result){
 		ModelAndView model = new ModelAndView("cerveja/PesquisaCervejas");
 		model.addObject("sabores", Sabor.values());
 		model.addObject("estilos", estilos.findAll());
 		model.addObject("origens", Origem.values());
-		model.addObject("cervejas", cervejas.findAll());
+		model.addObject("cervejas", cervejas.filtrar(cervejaFilter));
 		return model;
 	}
 
