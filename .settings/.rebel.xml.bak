@@ -13,6 +13,11 @@
 
 	<web>
 		<link target="/">
+			<dir name="/run/media/leandro/Dados (NEW)/spring-framework-expert.git/target/m2e-wtp/web-resources">
+				<exclude name="/"/>
+			</dir>
+		</link>
+		<link target="/">
 			<dir name="/run/media/leandro/Dados (NEW)/spring-framework-expert.git/src/main/webapp">
 			</dir>
 		</link>

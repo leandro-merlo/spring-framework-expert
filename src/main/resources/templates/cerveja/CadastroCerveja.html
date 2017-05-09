@@ -39,7 +39,7 @@
 				<div class="col-sm-2">
 					<div class="form-group bw-required" brewer:classforerror="sku">
 						<label for="sku" class="control-label">SKU</label> 
-						<input id="sku" type="text" class="form-control" th:field="*{sku}" />
+						<input id="sku" type="text" class="form-control" th:field="*{sku}" th:readonly="*{sku != null}" />
 					</div>
 				</div>
 				<div class="col-sm-10">
@@ -61,7 +61,7 @@
 					<div class="form-group bw-required"  brewer:classforerror="estilo">
 						<label for="estilo" class="control-label">Estilo</label> 
 						<div class="bw-field-action">
-							<select id="estilo" class="form-control" th:field="*{estilo}">
+							<select id="estilo" class="form-control" th:field="*{estilo.id}">
 								<option value="">Selecione o Estilo</option>
 								<option th:each="estilo : ${estilos}" th:value="${estilo.id}" th:text="${estilo.nome}"/>
 							</select>

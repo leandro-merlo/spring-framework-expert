@@ -65,7 +65,7 @@ public class FotoStorageLocal implements FotoStorage{
 	public void salvar(String foto) {
 		try {
 			Files.move(this.localTemporario.resolve(foto), this.local.resolve(foto));
-			Thumbnails.of(this.local.resolve(foto).toString()).size(40, 68).toFiles(Rename.PREFIX_DOT_THUMBNAIL);
+			Thumbnails.of(this.local.resolve(foto).toString()).size(70, 70).toFiles(Rename.PREFIX_DOT_THUMBNAIL);
 		} catch (IOException e) {
 			throw new RuntimeException("Erro movendo foto para o destino final", e);
 		}
